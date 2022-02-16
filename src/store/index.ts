@@ -33,7 +33,7 @@ export default new Vuex.Store({
   getters: {
     /**
      * 記事一覧を返す.
-     * @param state ステート
+     * @param state - ステート
      * @returns 記事一覧
      */
     getArticles(state) {

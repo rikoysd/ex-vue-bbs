@@ -21,15 +21,16 @@
       <br />
       <div v-for="comment of article.commentList" v-bind:key="comment.id">
         コメント者名：{{ comment.name }}<br />
-        コメント内容：{{ comment.content }}
+        コメント内容：<pre>{{ comment.content }}</pre>
       </div>
       <hr />
     </div>
-      <div>名前：</div>
-      <input type="text">
-      <div>コメント：</div>
-      <textarea cols="30" rows="10"></textarea>
-      <button></button>
+    <div>名前：</div>
+    <input type="text" v-model="commentName"/>
+    <div>コメント：</div>
+    <textarea cols="30" rows="10" v-model="commentContent"></textarea>
+    <br />
+    <button type="button" v-on:click="addComment">コメント投稿</button>
   </div>
 </template>
 
@@ -44,6 +45,10 @@ export default class XXXComponent extends Vue {
   private articleName = "";
   //投稿内容
   private articleContent = "";
+  //コメント者名
+  private commentName = "";
+  //コメント内容
+  private commentContent = "";
 
   /**
    * 記事一覧を表示する.
