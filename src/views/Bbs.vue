@@ -1,5 +1,11 @@
 <template>
-  <div id="app">{{ currentArticleList }}</div>
+  <div id="app">
+    <div>
+      投稿者名：{{ article.name }} <br />
+      投稿内容：
+      <pre>{{ article.content }}</pre>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
