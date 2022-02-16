@@ -15,9 +15,14 @@
     </div>
     <hr />
     <div v-for="article of currentArticleList" v-bind:key="article.id">
-      投稿者名：{{ article.name }} <br />
+      投稿者名：{{ article.name }}<br />
       投稿内容：
       <pre>{{ article.content }}</pre>
+      <br />
+      <div v-for="comment of article.commentList" v-bind:key="comment.id">
+        コメント者名：{{ comment.name }}<br />
+        コメント内容：{{ comment.content }}
+      </div>
       <hr />
     </div>
   </div>
