@@ -7,19 +7,18 @@
       <textarea
         name="articleContent"
         v-model="articleContent"
-        id=""
         cols="30"
         rows="10"
       ></textarea>
-      <br>
-      <button type="button" v-on:click="addArticle">記事投稿</button>
+      <br />
+      <button type="button" v-on:click="addArticle()">記事投稿</button>
     </div>
     <hr />
     <div v-for="article of currentArticleList" v-bind:key="article.id">
       投稿者名：{{ article.name }} <br />
       投稿内容：
       <pre>{{ article.content }}</pre>
-      <hr>
+      <hr />
     </div>
   </div>
 </template>
@@ -36,8 +35,27 @@ export default class XXXComponent extends Vue {
   //投稿内容
   private articleContent = "";
 
+  /**
+   * 記事一覧を表示する.
+   */
   created(): void {
     this.currentArticleList = this.$store.getters.getArticles;
+  }
+
+  /**
+   * 記事を追加する.
+   */
+  addArticle(): void {
+    let articles = this.$store.getters.getArticles;
+    let newId = 0;
+    if (articles.length) {
+      newId = articles[0].id + 1;
+    }
+    this.$store.commit("addArticle", {
+      article: new Article(newId, this.articleName, this.articleContent, []),
+    });
+    this.articleName = "";
+    this.articleContent = "";
   }
 }
 </script>
