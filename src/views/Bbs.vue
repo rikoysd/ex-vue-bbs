@@ -1,17 +1,19 @@
 <template>
-  <div>
-    
-  </div>
+  <div id="app">{{ currentArticleList }}</div>
 </template>
 
 <script lang="ts">
+import { Article } from "@/types/article";
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
+  //現在の記事一覧
+  private currentArticleList = new Array<Article>();
 
+  created(): void {
+    this.currentArticleList = this.$store.getters.getArticles;
+  }
 }
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
