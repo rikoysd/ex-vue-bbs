@@ -19,7 +19,16 @@ export default new Vuex.Store({
       ]),
     ],
   }, // end state
-  mutations: {},
+  mutations: {
+    /**
+     * 記事を追加する.
+     * @param state ステート
+     * @param payload ペイロード
+     */
+    addArticle(state,payload){
+      state.articles.unshift(payload.article);
+    }
+  },
   actions: {},
   getters: {
     /**

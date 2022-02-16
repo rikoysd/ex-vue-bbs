@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div>
+    <div v-for="article of currentArticleList" v-bind:key="article.id">
       投稿者名：{{ article.name }} <br />
       投稿内容：
       <pre>{{ article.content }}</pre>
