@@ -11,7 +11,7 @@
         rows="10"
       ></textarea>
       <br />
-      <button type="button" v-on:click="addArticle()">記事投稿</button>
+      <button type="button" v-on:click="addArticle">記事投稿</button>
     </div>
     <hr />
     <div v-for="article of currentArticleList" v-bind:key="article.id">
@@ -25,6 +25,11 @@
       </div>
       <hr />
     </div>
+      <div>名前：</div>
+      <input type="text">
+      <div>コメント：</div>
+      <textarea cols="30" rows="10"></textarea>
+      <button></button>
   </div>
 </template>
 
@@ -53,7 +58,8 @@ export default class XXXComponent extends Vue {
   addArticle(): void {
     let articles = this.$store.getters.getArticles;
     let newId = 0;
-    if (articles.length) {
+    //articles.length !== 0 もしくは articles.length でもOK
+    if (articles.length >= 1) {
       newId = articles[0].id + 1;
     }
     this.$store.commit("addArticle", {
