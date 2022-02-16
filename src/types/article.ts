@@ -1,3 +1,4 @@
+import { Comment } from "./comment";
 /**
  * 記事の部品クラスです.
  */
