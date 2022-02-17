@@ -19,7 +19,9 @@
       投稿内容：
       <pre>{{ article.content }}</pre>
       <br />
-      <!-- <button type="button" v-on:click="deleteArticle">記事削除</button> -->
+      <button type="button" v-on:click="deleteArticle(articleIndex)">
+        記事削除
+      </button>
       <div v-for="comment of article.commentList" v-bind:key="comment.id">
         コメント者名：{{ comment.name }}<br />
         コメント内容：
@@ -94,6 +96,15 @@ export default class XXXComponent extends Vue {
     });
     this.commentName = "";
     this.commentContent = "";
+  }
+  /**
+   * 記事を削除する.
+   * @param articleIndex - 記事Index
+   */
+  deleteArticle(articleIndex: number): void {
+    this.$store.commit("deleteArticle", {
+      articleIndex: articleIndex,
+    });
   }
 }
 </script>

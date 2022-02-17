@@ -48,9 +48,17 @@ export default new Vuex.Store({
         payload.comment.content,
         payload.comment.articleId
       );
-      
+
       //コメントリスト配列の0番目(一番上)にコメントを追加
       article.commentList.unshift(comment);
+    },
+    /**
+     * 記事を削除する.
+     * @param state - ステート
+     * @param payload -記事Index
+     */
+    deleteArticle(state, payload) {
+      state.articles.splice(payload.articleIndex, 1);
     },
   },
   actions: {},
