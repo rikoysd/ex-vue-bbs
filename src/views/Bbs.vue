@@ -19,6 +19,7 @@
       投稿内容：
       <pre>{{ article.content }}</pre>
       <br />
+      <!-- deleteArticleの引数articleIndexをv-forの中で定義する -->
       <button type="button" v-on:click="deleteArticle(articleIndex)">
         記事削除
       </button>
@@ -42,6 +43,7 @@
 
 <script lang="ts">
 import { Article } from "@/types/article";
+//Commentの部品クラスをimportしないと元々JSで用意されているcommentが使われたことになっている
 import { Comment } from "@/types/comment";
 import { Component, Vue } from "vue-property-decorator";
 @Component
