@@ -25,9 +25,34 @@ export default new Vuex.Store({
      * @param state - ステート
      * @param payload - ペイロード
      */
-    addArticle(state,payload){
+    addArticle(state, payload) {
       state.articles.unshift(payload.article);
-    }
+    },
+    /**
+     * コメントを追加する.
+     * @param state - ステート
+     * @param payload - コメント情報
+     */
+    addComment(state, payload) {
+      //コメントを追加する対象の記事を絞り込む（1件だけ絞り込む）
+      const newArray = state.articles.filter(
+        (article) => article.id === payload.comment.articleId
+      );
+      //配列を一つの記事として扱う
+      const article = newArray[0];
+
+      //コメントオブジェクトを生成
+      const comment = new Comment(
+        payload.comment.id,
+        payload.comment.name,
+        payload.comment.content,
+        payload.comment.articleId
+      );
+
+      console.dir(JSON.stringify(comment));
+      //コメントリスト配列の0番目(一番上)にコメントを追加
+      article.commentList.unshift(comment);
+    },
   },
   actions: {},
   getters: {

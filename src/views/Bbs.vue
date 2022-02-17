@@ -19,23 +19,28 @@
       投稿内容：
       <pre>{{ article.content }}</pre>
       <br />
+      <!-- <button type="button" v-on:click="deleteArticle">記事削除</button> -->
       <div v-for="comment of article.commentList" v-bind:key="comment.id">
         コメント者名：{{ comment.name }}<br />
-        コメント内容：<pre>{{ comment.content }}</pre>
+        コメント内容：
+        <pre>{{ comment.content }}</pre>
       </div>
+      <div>名前：</div>
+      <input type="text" v-model="commentName" />
+      <div>コメント：</div>
+      <textarea cols="30" rows="10" v-model="commentContent"></textarea>
+      <br />
+      <button type="button" v-on:click="addComment(article.id)">
+        コメント投稿
+      </button>
       <hr />
     </div>
-    <div>名前：</div>
-    <input type="text" v-model="commentName"/>
-    <div>コメント：</div>
-    <textarea cols="30" rows="10" v-model="commentContent"></textarea>
-    <br />
-    <button type="button" v-on:click="addComment">コメント投稿</button>
   </div>
 </template>
 
 <script lang="ts">
 import { Article } from "@/types/article";
+import { Comment } from "@/types/comment";
 import { Component, Vue } from "vue-property-decorator";
 @Component
 export default class XXXComponent extends Vue {
@@ -54,7 +59,10 @@ export default class XXXComponent extends Vue {
    * 記事一覧を表示する.
    */
   created(): void {
+    console.log("created呼ばれた");
+
     this.currentArticleList = this.$store.getters.getArticles;
+    console.dir(JSON.stringify(this.currentArticleList));
   }
 
   /**
@@ -72,6 +80,23 @@ export default class XXXComponent extends Vue {
     });
     this.articleName = "";
     this.articleContent = "";
+  }
+
+  /**
+   * コメントを追加する.
+   * @param articleId - 記事ID
+   */
+  addComment(articleId: number): void {
+    this.$store.commit("addComment", {
+      comment: new Comment(
+        -1,
+        this.commentName,
+        this.commentContent,
+        articleId
+      ),
+    });
+    this.commentName = "";
+    this.commentContent = "";
   }
 }
 </script>
