@@ -87,6 +87,7 @@ export default class XXXComponent extends Vue {
    * コメントを追加する.
    * @param articleId - 記事ID
    */
+  //コメントIDをとりあえず-1で統一している
   addComment(articleId: number): void {
     this.$store.commit("addComment", {
       comment: new Comment(
