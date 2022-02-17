@@ -59,10 +59,7 @@ export default class XXXComponent extends Vue {
    * 記事一覧を表示する.
    */
   created(): void {
-    console.log("created呼ばれた");
-
     this.currentArticleList = this.$store.getters.getArticles;
-    console.dir(JSON.stringify(this.currentArticleList));
   }
 
   /**

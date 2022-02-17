@@ -48,8 +48,7 @@ export default new Vuex.Store({
         payload.comment.content,
         payload.comment.articleId
       );
-
-      console.dir(JSON.stringify(comment));
+      
       //コメントリスト配列の0番目(一番上)にコメントを追加
       article.commentList.unshift(comment);
     },
